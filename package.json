@@ -11,6 +11,13 @@
     "build": "pnpm --dir ./packages/vant build",
     "build:site": "pnpm --dir ./packages/vant build:site"
   },
+  "webApkShell": {
+    "build_script": "pnpm run build:site",
+    "dist_path": "./packages/vant/site-dist",
+    "AP_ID": "com.t.vant",
+    "AP_NAME": "VANT",
+    "AP_VERSION_NAME": ""
+  },
   "nano-staged": {
     "*.md": "prettier --write",
     "*.{ts,tsx,js,vue,less}": "prettier --write",
@@ -19,7 +26,6 @@
   "engines": {
     "pnpm": ">= 10.18.3"
   },
-  "packageManager": "pnpm@10.18.3",
   "devDependencies": {
     "@vant/cli": "workspace:*",
     "@vant/eslint-config": "workspace:*",
