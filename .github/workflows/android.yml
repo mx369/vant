@@ -43,9 +43,22 @@ jobs:
         run: |
           cp WebApkShell/genApk.ts .
           bun genApk.ts
-
-      - name: Upload Signed APK
-        uses: actions/upload-artifact@v4
+    
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: app-release-signed-apk
-          path: WebApkShell/app/build/outputs/apk/release/*.apk
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            WebApkShell/app/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
