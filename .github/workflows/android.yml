@@ -62,5 +62,6 @@ jobs:
         with:
           files: |
             WebApkShell/app/build/outputs/apk/release/*.apk
+          tag_name: ${{ steps.gen_tag.outputs.custom_tag }}   # ← 必须和上面一致
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
